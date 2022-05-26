@@ -7,11 +7,13 @@
 #pragma semicolon 1
 #pragma newdecls required
 
+#define PLUGIN_VERSION "0.1.0"
+
 public Plugin myinfo = {
     name        = "Scrimblo",
     author      = "VIORA",
     description = "A better implementation of the scrambling algorithm",
-    version     = "0.1.0",
+    version     = PLUGIN_VERSION,
     url         = "https://github.com/crescentrose/tf2-scrimblo"
 };
 
@@ -105,6 +107,7 @@ PlayerList g_playerList;
 Handle g_scoreUpdateTimer;
 
 public void OnPluginStart() {
+    CreateConVar("scrimblo_version", PLUGIN_VERSION, "Scrimblo version", FCVAR_DONTRECORD);
     RegAdminCmd("sm_scrimblo", Command_Scramble, ADMFLAG_VOTE, "Scramble the teams");
     g_cvarRestartGame = FindConVar("mp_restartgame_immediate");
     g_playerList = new PlayerList();
